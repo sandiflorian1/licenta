@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">DyzrVn1S5jZEZ3YRj3fqMKSsdx0gAxrf0uiLwU5i</string>
+    <string name="back4app_client_key">NFF69uhSaEiPe5ezJ4Z5TONRghDQXgrVpftxvrUl</string>
+
+    <string name="app_name">TripApp</string>
+    <string name="login">Login</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="singIn">Sing In</string>
+    <string name="singUp">Register</string>
+    <string name="email">Email</string>
+    <string name="create_acount">Create Acount</string>
+    <string name="confirmPass">Confirm Password</string>
+    <string name="title_activity_main_content">MainContent</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_current_trip">currentTrip</string>
+    <string name="name_trip">Name Trip</string>
+    <string name="create_trip">Create Trip</string>
+
+
+</resources>
