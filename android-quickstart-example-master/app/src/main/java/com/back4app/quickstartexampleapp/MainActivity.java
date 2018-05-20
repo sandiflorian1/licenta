@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void goToRegister(View view){
-        Intent intent = new Intent(getApplicationContext(),registerUser.class);
+        Intent intent = new Intent(getApplicationContext(),RegisterUser.class);
         startActivity(intent);
         Log.i("Info","Buton apasat");
 

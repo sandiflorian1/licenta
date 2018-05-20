@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 import java.util.Date;
 
 
-public class addTrip extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddTrip extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private int datePickerInput;
     private Date startDate = new Date();
     private Date endDate = new Date();
@@ -46,7 +46,7 @@ public class addTrip extends AppCompatActivity implements DatePickerDialog.OnDat
                 public void done(ParseException e) {
                     if( e == null){
                         Log.i("create", "creare trip cu succes");
-                        Intent intent = new Intent(getApplicationContext(),MainContent.class);
+                        Intent intent = new Intent(getApplicationContext(),MainApp.class);
                         startActivity(intent);
                     }else{
                         Log.i("create", "creare trip cu eroare");

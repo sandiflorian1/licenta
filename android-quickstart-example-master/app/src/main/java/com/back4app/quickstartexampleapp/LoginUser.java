@@ -25,7 +25,7 @@ public class LoginUser extends AppCompatActivity {
                 if (user != null) {
 
                     Log.i("Info", "Login successful");
-                    Intent intent = new Intent(getApplicationContext(),MainContent.class);
+                    Intent intent = new Intent(getApplicationContext(),MainApp.class);
                     startActivity(intent);
 
                 } else {

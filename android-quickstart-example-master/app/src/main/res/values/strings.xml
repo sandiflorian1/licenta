@@ -22,6 +22,11 @@
     <string name="title_activity_current_trip">currentTrip</string>
     <string name="name_trip">Name Trip</string>
     <string name="create_trip">Create Trip</string>
+    <string name="title_activity_main_part">MainPart</string>
+    <string name="title_activity_main_app">mainApp</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 
 
 </resources>

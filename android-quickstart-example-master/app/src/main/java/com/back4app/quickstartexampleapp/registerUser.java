@@ -12,7 +12,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class registerUser extends AppCompatActivity {
+public class RegisterUser extends AppCompatActivity {
 
     public void goToRegisterUser(View view){
         EditText userEditText = (EditText) findViewById(R.id.userText);
@@ -40,7 +40,7 @@ public class registerUser extends AppCompatActivity {
 
                     } else {
 
-                        Toast.makeText(registerUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterUser.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -48,7 +48,7 @@ public class registerUser extends AppCompatActivity {
         }else {
             Log.i("Signup", passwordEditText.getText().toString());
             Log.i("Signup", confirmPassEditText.getText().toString());
-            Toast.makeText(registerUser.this,"Wrong match password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterUser.this,"Wrong match password", Toast.LENGTH_SHORT).show();
         }
 
 

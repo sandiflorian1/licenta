@@ -32,16 +32,13 @@
             android:value="@string/back4app_client_key" />
 
         <activity android:name=".LoginUser" />
-        <activity android:name=".registerUser" />
+        <activity android:name=".RegisterUser" />
+        <activity android:name=".AddTrip" />
         <activity
-            android:name=".MainContent"
-            android:label="@string/title_activity_main_content"
+            android:name=".MainApp"
+            android:label="@string/title_activity_main_app"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".addTrip" />
-        <activity
-            android:name=".currentTrip"
-            android:label="@string/title_activity_current_trip"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CurrentTrip"></activity>
     </application>
 
 </manifest>
