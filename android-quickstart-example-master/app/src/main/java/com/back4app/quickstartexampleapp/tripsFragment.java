@@ -1,6 +1,7 @@
 package com.back4app.quickstartexampleapp;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,12 +21,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TripsFragment extends Fragment {
 
-    private static final String TAG = "TripsFragment";
+    private static final String TAG = "Trip";
     private Button tripBtn;
     @Nullable
     @Override
@@ -45,6 +48,17 @@ public class TripsFragment extends Fragment {
         final ArrayList<String> trips = new ArrayList<String>();
 
         final ListView tripsListView = (ListView) view.findViewById(R.id.tripsView);
+
+        tripsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(getActivity(), CurrentTrip.class);
+                intent.putExtra("tripName", trips.get(i));
+                startActivity(intent);
+
+            }
+        });
 
         final ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, trips);
 

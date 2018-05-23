@@ -38,7 +38,11 @@
             android:name=".MainApp"
             android:label="@string/title_activity_main_app"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CurrentTrip"></activity>
+        <activity
+            android:name=".CurrentTrip"
+            android:label="@string/title_activity_current_trip"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CreatePost"></activity>
     </application>
 
 </manifest>

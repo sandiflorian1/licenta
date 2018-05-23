@@ -31,8 +31,8 @@ public class MainApp extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new NetworkFragment(),"NetworkFragment");
-        adapter.addFragment(new TripsFragment(), "TripsFragment");
+        adapter.addFragment(new NetworkFragment(),"Network");
+        adapter.addFragment(new TripsFragment(), "Trips");
         viewPager.setAdapter(adapter);
     }
 

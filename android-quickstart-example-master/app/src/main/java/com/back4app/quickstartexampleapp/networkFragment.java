@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class NetworkFragment extends Fragment {
 
-    private static final String TAG = "NetworkFragment";
+    private static final String TAG = "Network";
     private Button netbtn;
     @Nullable
     @Override
@@ -23,7 +23,9 @@ public class NetworkFragment extends Fragment {
 
         netbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"ai apasat netbtn",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"ai apasat netbtn",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CreatePost.class);
+                startActivity(intent);
             }
         });
         return view;
