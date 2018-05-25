@@ -38,7 +38,7 @@ public class AddTrip extends AppCompatActivity implements DatePickerDialog.OnDat
             trip.put("createdBy", ParseUser.getCurrentUser());
             trip.put("nameTrip", nameTripText.getText().toString());
             trip.put("startDate", startDate);
-            trip.put("startDate", endDate);
+            trip.put("endDate", endDate);
             trip.put("moreDestination", isMoreDest);
 
             trip.saveInBackground(new SaveCallback() {
