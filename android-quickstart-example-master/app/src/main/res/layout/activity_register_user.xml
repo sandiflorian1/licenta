@@ -5,29 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterUser"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp">
+    android:background="@color/backgroundColor">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/textCreateAccount"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/create_acount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/com_facebook_button_icon"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/emailText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:hint="@string/email"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textCreateAccount" />
 
     <EditText
         android:id="@+id/userText"
@@ -36,6 +38,8 @@
         android:layout_marginTop="24dp"
         android:hint="@string/user_name"
         android:inputType="textPersonName"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText" />
@@ -47,6 +51,8 @@
         android:inputType="textPassword"
         android:layout_marginTop="24dp"
         android:hint="@string/password"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userText" />
@@ -56,8 +62,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:hint="@string/confirmPass"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordText" />
@@ -71,6 +79,7 @@
         android:layout_marginTop="48dp"
         android:onClick="goToRegisterUser"
         android:text="@string/register"
+        android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPass" />
