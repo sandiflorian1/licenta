@@ -3,6 +3,7 @@ package com.back4app.quickstartexampleapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -30,10 +31,18 @@ public class TripsFragment extends Fragment {
 
     private static final String TAG = "Trip";
     private Button tripBtn;
+    private FloatingActionButton pastTrip;
+    private FloatingActionButton presentTrip;
+    private FloatingActionButton futureTrip;
     private List<TripClass> tripList = new ArrayList<>();
     private RecyclerView recyclerView;
     private TripAdapter mAdapter;
-    
+
+//    public void filterPastTrip(View view){
+//        preparePastTripData();
+//        Log.i("Info","Filtrare din trecut");
+//
+//    }
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +50,9 @@ public class TripsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.trips_tab, container, false);
         tripBtn = (Button) rootView.findViewById(R.id.tripBtn);
+        pastTrip = (FloatingActionButton) rootView.findViewById(R.id.past);
+        presentTrip = (FloatingActionButton) rootView.findViewById(R.id.present);
+        futureTrip = (FloatingActionButton) rootView.findViewById(R.id.future);
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
         rv.setHasFixedSize(true);
@@ -77,9 +89,31 @@ public class TripsFragment extends Fragment {
             }
 
         });
+        pastTrip.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                tripList.clear();
+                preparePastTripData(-1);
+            }
+
+        });
+        presentTrip.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                tripList.clear();
+                preparePastTripData(0);
+            }
+
+        });
+        futureTrip.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                tripList.clear();
+                preparePastTripData(1);
+            }
+
+        });
         prepareTripData();
         return rootView;
     }
+
     private void prepareTripData() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
@@ -101,6 +135,67 @@ public class TripsFragment extends Fragment {
                             String name = String.valueOf(trip.get("nameTrip"));
                             Date startDate = trip.getDate("startDate");
                             Date endDate =  trip.getDate("startDate");
+
+                            Calendar calendarS = Calendar.getInstance();
+                            calendarS.setTime(startDate);
+
+                            String startDateTrip = String.valueOf(calendarS.get(Calendar.DAY_OF_MONTH)) + " " + calendarS.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
+
+                            Calendar calendarE = Calendar.getInstance();
+                            calendarE.setTime(endDate);
+                            String endDateTrip = String.valueOf(calendarE.get(Calendar.DAY_OF_MONTH)) + " " + calendarE.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.getDefault());
+
+                            String year = String.valueOf(calendarE.get(Calendar.YEAR));
+                            TripClass tripC = new TripClass(name, startDateTrip, endDateTrip, year);
+                            tripList.add(tripC);
+
+                        }
+
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+
+                } else {
+
+                    e.printStackTrace();
+
+                }
+
+            }
+        });
+
+    }
+
+    private void preparePastTripData(int x) {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
+        //query.whereEqualTo("nameuser", ParseUser.getCurrentUser().getUsername());
+        Log.i("Info", String.valueOf(ParseUser.getCurrentUser().getObjectId()));
+        if(x == -1){
+            query.whereLessThanOrEqualTo("endDate",Calendar.getInstance().getTime());
+        }else if (x == 0){
+            query.whereLessThanOrEqualTo("startDate",Calendar.getInstance().getTime());
+            query.whereGreaterThanOrEqualTo("endDate",Calendar.getInstance().getTime());
+        }else if(x == 1){
+            query.whereGreaterThanOrEqualTo("startDate",Calendar.getInstance().getTime());
+        }else{
+            Log.i("Info", "Erroare la filtarre");
+        }
+
+        query.addDescendingOrder("createdAt");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> trips, ParseException e) {
+
+                if (e == null) {
+
+                    if (trips.size() > 0) {
+
+                        for (ParseObject trip : trips) {
+                            String name = String.valueOf(trip.get("nameTrip"));
+                            Date startDate = trip.getDate("startDate");
+                            Date endDate =  trip.getDate("endDate");
 
                             Calendar calendarS = Calendar.getInstance();
                             calendarS.setTime(startDate);
