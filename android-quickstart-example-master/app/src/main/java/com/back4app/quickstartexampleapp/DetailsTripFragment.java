@@ -6,10 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class DetailsTripFragment extends Fragment {
+
     private static final String TAG = "Details";
     //private Button netbtn;
     @Nullable

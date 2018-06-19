@@ -1,11 +1,9 @@
 package com.back4app.quickstartexampleapp;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,11 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,11 +20,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,7 +33,7 @@ public class TripsFragment extends Fragment {
     private List<TripClass> tripList = new ArrayList<>();
     private RecyclerView recyclerView;
     private TripAdapter mAdapter;
-    @Nullable
+    
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -99,13 +91,13 @@ public class TripsFragment extends Fragment {
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
+            public void done(List<ParseObject> trips, ParseException e) {
 
                 if (e == null) {
 
-                    if (objects.size() > 0) {
+                    if (trips.size() > 0) {
 
-                        for (ParseObject trip : objects) {
+                        for (ParseObject trip : trips) {
                             String name = String.valueOf(trip.get("nameTrip"));
                             Date startDate = trip.getDate("startDate");
                             Date endDate =  trip.getDate("startDate");

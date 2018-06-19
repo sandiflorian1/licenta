@@ -1,14 +1,13 @@
 package com.back4app.quickstartexampleapp;
 
-import android.app.Dialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,8 +19,8 @@ import com.parse.SaveCallback;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class AddTrip extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -31,15 +30,12 @@ public class AddTrip extends AppCompatActivity implements DatePickerDialog.OnDat
 
     public void createTrip (View view){
         EditText nameTripText = (EditText) findViewById(R.id.nameTrip);
-        boolean isMoreDest = ((CheckBox) findViewById(R.id.moreDest)).isChecked();
-        Log.i("moreDest", String.valueOf(isMoreDest));
         if( nameTripText != null){
             ParseObject trip = new ParseObject("Trip");
             trip.put("createdBy", ParseUser.getCurrentUser());
             trip.put("nameTrip", nameTripText.getText().toString());
             trip.put("startDate", startDate);
             trip.put("endDate", endDate);
-            trip.put("moreDestination", isMoreDest);
 
             trip.saveInBackground(new SaveCallback() {
                 @Override
