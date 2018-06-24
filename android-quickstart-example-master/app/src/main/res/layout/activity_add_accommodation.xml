@@ -4,6 +4,178 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAccommodation">
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    tools:context=".AddAccommodation"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ImageView
+        android:id="@+id/addTripImg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/addacc1x1"
+        android:layout_marginTop="6dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nameAcc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTripImg" />
+
+    <EditText
+        android:id="@+id/addressAcc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameAcc" />
+
+    <EditText
+        android:id="@+id/reservNr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Reservation Number"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressAcc" />
+
+    <EditText
+        android:id="@+id/priceAcc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Price"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reservNr" />
+
+    <LinearLayout
+        android:id="@+id/rowStartDate"
+        android:layout_width="fill_parent"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/title"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceAcc">
+
+        <Button
+            android:id="@+id/startDateTripA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check - In   Date"
+            android:onClick="showDatePickerDialog"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/startTimeTripA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check - In   Time"
+            android:onClick="showTimePickerDialog"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/startDateTripAll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:text="Check-In Date" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rowEndDate"
+        android:layout_width="fill_parent"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/title"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowStartDate">
+
+        <Button
+            android:id="@+id/endDateTripA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-Out Date"
+            android:onClick="showDatePickerDialog"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/endTimeTripA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="showTimePickerDialog"
+            android:text="Check-Out Time" />
+
+        <TextView
+            android:id="@+id/endDateTripAll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:text="Check-Out Date" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/noteAcc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Note"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowEndDate" />
+
+    <Button
+        android:id="@+id/createTrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Accommodation"
+        android:layout_marginTop="12dp"
+        android:onClick="addAccomodation"
+        android:background="@color/orange"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noteAcc" />
 
 </android.support.constraint.ConstraintLayout>

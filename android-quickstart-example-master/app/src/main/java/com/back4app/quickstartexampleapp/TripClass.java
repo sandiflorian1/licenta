@@ -1,16 +1,23 @@
 package com.back4app.quickstartexampleapp;
 
 public class TripClass {
-    private String title, startDateTrip, endDateTrip, year;
+    private String tripId, title, startDateTrip, endDateTrip, year;
 
     public TripClass() {
     }
 
-    public TripClass(String title, String startDateTrip, String endDateTrip, String year) {
+    public TripClass(String tripId, String title, String startDateTrip, String endDateTrip, String year) {
+        this.tripId = tripId;
         this.title = title;
         this.startDateTrip = startDateTrip;
         this.endDateTrip = endDateTrip;
         this.year = year;
+    }
+    public String getTripId() {
+        return tripId;
+    }
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
     }
 
     public String getTitle() {

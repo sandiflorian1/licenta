@@ -97,8 +97,7 @@ public class AddTrip extends AppCompatActivity implements DatePickerDialog.OnDat
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             return new DatePickerDialog(getActivity(),
-                    (DatePickerDialog.OnDateSetListener)
-                    getActivity(),year, month, day);
+                    (DatePickerDialog.OnDateSetListener) getActivity(),year, month, day);
 
         }
     }

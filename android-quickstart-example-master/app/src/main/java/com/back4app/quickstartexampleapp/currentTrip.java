@@ -9,11 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 public class CurrentTrip extends AppCompatActivity {
-
     private static final String TAG = "CurrentTrip";
 
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
+    private String tripId;
+    private String tripName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +23,30 @@ public class CurrentTrip extends AppCompatActivity {
         Log.d(TAG,"onCreate: Starting");
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
+        Intent intent = getIntent();
+        tripId = intent.getStringExtra("tripId");
         mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        setupViewPagerX(mViewPager, tripId);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        Intent intent = getIntent();
-
-        String activeTrip = intent.getStringExtra("tripName");
-
+        tripName = intent.getStringExtra("tripName");
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(activeTrip);
+        toolbar.setTitle(tripName);
+
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPagerX(ViewPager viewPager, String tripId){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DetailsTripFragment(),"Details");
+        DetailsTripFragment detailsFrag = new DetailsTripFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("tripCurrentId", tripId);
+        bundle.putString("tripName", tripName);
+        detailsFrag.setArguments(bundle);
+        adapter.addFragment(detailsFrag,"Details");
         adapter.addFragment(new ItieraryTripFragment(), "Itinerary");
         viewPager.setAdapter(adapter);
     }
+
 }

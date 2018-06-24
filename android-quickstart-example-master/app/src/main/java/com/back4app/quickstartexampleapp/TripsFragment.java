@@ -72,6 +72,7 @@ public class TripsFragment extends Fragment {
                 //Toast.makeText(getContext(), trip.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), CurrentTrip.class);
                 intent.putExtra("tripName", trip.getTitle());
+                intent.putExtra("tripId", trip.getTripId());
                 startActivity(intent);
             }
 
@@ -132,6 +133,7 @@ public class TripsFragment extends Fragment {
                     if (trips.size() > 0) {
 
                         for (ParseObject trip : trips) {
+                            String tripId = trip.getObjectId();
                             String name = String.valueOf(trip.get("nameTrip"));
                             Date startDate = trip.getDate("startDate");
                             Date endDate =  trip.getDate("startDate");
@@ -146,7 +148,7 @@ public class TripsFragment extends Fragment {
                             String endDateTrip = String.valueOf(calendarE.get(Calendar.DAY_OF_MONTH)) + " " + calendarE.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.getDefault());
 
                             String year = String.valueOf(calendarE.get(Calendar.YEAR));
-                            TripClass tripC = new TripClass(name, startDateTrip, endDateTrip, year);
+                            TripClass tripC = new TripClass(tripId, name, startDateTrip, endDateTrip, year);
                             tripList.add(tripC);
 
                         }
@@ -193,6 +195,7 @@ public class TripsFragment extends Fragment {
                     if (trips.size() > 0) {
 
                         for (ParseObject trip : trips) {
+                            String tripId = trip.getObjectId();
                             String name = String.valueOf(trip.get("nameTrip"));
                             Date startDate = trip.getDate("startDate");
                             Date endDate =  trip.getDate("endDate");
@@ -207,7 +210,7 @@ public class TripsFragment extends Fragment {
                             String endDateTrip = String.valueOf(calendarE.get(Calendar.DAY_OF_MONTH)) + " " + calendarE.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.getDefault());
 
                             String year = String.valueOf(calendarE.get(Calendar.YEAR));
-                            TripClass tripC = new TripClass(name, startDateTrip, endDateTrip, year);
+                            TripClass tripC = new TripClass(tripId, name, startDateTrip, endDateTrip, year);
                             tripList.add(tripC);
 
                         }
