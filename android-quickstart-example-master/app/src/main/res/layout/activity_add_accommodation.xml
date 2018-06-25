@@ -9,16 +9,6 @@
     tools:context=".AddAccommodation"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ImageView
-        android:id="@+id/addTripImg"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/addacc1x1"
-        android:layout_marginTop="6dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/nameAcc"
         android:layout_width="fill_parent"

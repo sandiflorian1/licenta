@@ -13,7 +13,7 @@ public class TransAdapter extends RecyclerView.Adapter<TransAdapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, arrStation, note;
-        public TextView depStation;
+        public TextView depStation, depDate, arrDate, price, reservNr;
 
 
         public MyViewHolder(View view) {
@@ -21,7 +21,11 @@ public class TransAdapter extends RecyclerView.Adapter<TransAdapter.MyViewHolder
             name = (TextView) view.findViewById(R.id.name);
             depStation = (TextView) view.findViewById(R.id.depStation);
             arrStation = (TextView) view.findViewById(R.id.arrStation);
+            depDate = (TextView) view.findViewById(R.id.depDate);
+            arrDate = (TextView) view.findViewById(R.id.arrDate);
             note = (TextView) view.findViewById(R.id.note);
+            reservNr = (TextView) view.findViewById(R.id.reservNr);
+            price = (TextView) view.findViewById(R.id.price);
         }
     }
 
@@ -45,6 +49,11 @@ public class TransAdapter extends RecyclerView.Adapter<TransAdapter.MyViewHolder
         holder.depStation.setText(transClass.getDepStation());
         holder.arrStation.setText(transClass.getArrStation());
         holder.note.setText(transClass.getNote());
+        holder.arrDate.setText(transClass.getArrDate());
+        holder.depDate.setText(transClass.getDepDate());
+        holder.price.setText(transClass.getPrice());
+        holder.reservNr.setText(transClass.getReservNr());
+
     }
 
     @Override

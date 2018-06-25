@@ -38,11 +38,7 @@ public class TripsFragment extends Fragment {
     private RecyclerView recyclerView;
     private TripAdapter mAdapter;
 
-//    public void filterPastTrip(View view){
-//        preparePastTripData();
-//        Log.i("Info","Filtrare din trecut");
-//
-//    }
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

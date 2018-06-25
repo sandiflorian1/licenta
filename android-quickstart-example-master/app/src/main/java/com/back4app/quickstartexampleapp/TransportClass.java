@@ -1,17 +1,15 @@
 package com.back4app.quickstartexampleapp;
 
-import java.util.Date;
-
 public class TransportClass {
 
     private String name, reservNr, depStation, arrStation, note;
-    private Number price;
-    private Date depDate, arrDate;
+    private String price;
+    private String depDate, arrDate;
 
     public TransportClass() {
     }
 
-    public TransportClass( String name, String reservNr, String depStation, String arrStation, String note, Number price, Date depDate, Date arrDate) {
+    public TransportClass( String name, String reservNr, String depStation, String arrStation, String note, String price, String depDate, String arrDate) {
         this.name = name;
         this.reservNr = reservNr;
         this.depDate = depDate;
@@ -22,27 +20,27 @@ public class TransportClass {
         this.price = price;
     }
 
-    public Date getDepDate() {
+    public String getDepDate() {
         return depDate;
     }
 
-    public void setDepDate(Date depDate) {
+    public void setDepDate(String depDate) {
         this.depDate = depDate;
     }
 
-    public Date getArrDate() {
+    public String getArrDate() {
         return arrDate;
     }
 
-    public void setArrDate(Date arrDate) {
+    public void setArrDate(String arrDate) {
         this.arrDate = arrDate;
     }
 
-    public Number getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Number price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

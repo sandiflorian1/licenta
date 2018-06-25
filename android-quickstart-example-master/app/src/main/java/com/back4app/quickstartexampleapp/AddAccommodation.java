@@ -43,7 +43,7 @@ public class AddAccommodation extends AppCompatActivity implements DatePickerDia
         ParseObject acc = new ParseObject("Accommodation");
 
         acc.put("TripBy", ParseObject.createWithoutData("Trip",tripId));
-        acc.put("nameTrip", nameAcc.getText().toString());
+        acc.put("nameAcc", nameAcc.getText().toString());
         acc.put("addressAcc", addressAcc.getText().toString());
         acc.put("reservationNo", reservNr.getText().toString());
         acc.put("price", Double.parseDouble(price.getText().toString()));

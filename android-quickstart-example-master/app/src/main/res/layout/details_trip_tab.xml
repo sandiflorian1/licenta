@@ -8,13 +8,28 @@
     android:background="@color/backgroundColor"
     tools:context="com.back4app.quickstartexampleapp.DetailsTripFragment">
 
+    <TextView
+        android:id="@+id/textTrans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transport"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="48dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <Button
         android:id="@+id/addTrans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_marginLeft="24dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Add Transport"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/green"
+        android:layout_below="@id/textTrans" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -22,16 +37,53 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:layout_below="@id/addTrans"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="24dp"/>
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accommodation"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="48dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/recycler_view"/>
 
     <Button
         android:id="@+id/addAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/recycler_view"
+        android:layout_below="@id/textAcc"
         android:layout_marginTop="12dp"
-        android:text="Add Accommodation" />
+        android:layout_marginLeft="24dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Add Accommodation"
+        android:background="@color/orange"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_acc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_below="@id/addAcc"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/textNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="48dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/recycler_view_acc"/>
+
+
 
 
 </RelativeLayout>
