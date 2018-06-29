@@ -5,6 +5,14 @@
     <dimen name="past_margin">16dp</dimen>
     <dimen name="present_margin">84dp</dimen>
     <dimen name="future_margin">164dp</dimen>
-    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="appbar_padding_top">4dp</dimen>
     <dimen name="row_padding_vertical">10dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
 </resources>

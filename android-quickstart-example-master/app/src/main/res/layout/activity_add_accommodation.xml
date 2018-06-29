@@ -9,6 +9,26 @@
     tools:context=".AddAccommodation"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
+        <ImageView
+            android:id="@+id/addTripImg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/addacc2x2"
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/nameAcc"
         android:layout_width="fill_parent"
@@ -75,26 +95,28 @@
 
         <Button
             android:id="@+id/startDateTripA"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="Check - In   Date"
             android:onClick="showDatePickerDialog"
             android:layout_weight="1"
+            android:background="@color/green"
             />
 
         <Button
             android:id="@+id/startTimeTripA"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="Check - In   Time"
             android:onClick="showTimePickerDialog"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/green"/>
 
         <TextView
             android:id="@+id/startDateTripAll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="Check-In Date" />
 
     </LinearLayout>
@@ -120,6 +142,7 @@
             android:text="Check-Out Date"
             android:onClick="showDatePickerDialog"
             android:layout_weight="1"
+            android:background="@color/green"
             />
 
         <Button
@@ -128,13 +151,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="showTimePickerDialog"
-            android:text="Check-Out Time" />
+            android:text="Check-Out Time"
+            android:background="@color/green"/>
 
         <TextView
             android:id="@+id/endDateTripAll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="Check-Out Date" />
 
     </LinearLayout>
@@ -154,18 +178,18 @@
 
     <Button
         android:id="@+id/createTrip"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Add Accommodation"
         android:layout_marginTop="12dp"
         android:onClick="addAccomodation"
         android:background="@color/orange"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteAcc" />
 
+    </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -39,7 +39,6 @@ public class AddAccommodation extends AppCompatActivity implements DatePickerDia
         EditText price = (EditText) findViewById(R.id.priceAcc);
         EditText noteAcc = (EditText) findViewById(R.id.noteAcc);
 
-
         ParseObject acc = new ParseObject("Accommodation");
 
         acc.put("TripBy", ParseObject.createWithoutData("Trip",tripId));
@@ -56,10 +55,10 @@ public class AddAccommodation extends AppCompatActivity implements DatePickerDia
                 public void done(ParseException e) {
                     if( e == null){
                         Log.i("create", "creare trip cu succes");
-//                        Intent intent = new Intent(getApplicationContext(),CurrentTrip.class);
-//                        startActivity(intent);
-//                        intent.putExtra("tripName", tripName);
-//                        intent.putExtra("tripId", tripId);
+                        Intent intent = new Intent(getApplicationContext(),CurrentTrip.class);
+                        intent.putExtra("tripName", tripName);
+                        intent.putExtra("tripId", tripId);
+                        startActivity(intent);
                     }else{
                         Log.i("create", "creare trip cu eroare");
                         Log.i("create", String.valueOf(e));

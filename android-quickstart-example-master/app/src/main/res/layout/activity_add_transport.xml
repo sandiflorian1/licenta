@@ -9,11 +9,22 @@
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
+
     <ImageView
         android:id="@+id/addTripImg"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/addtrans1x1"
+        app:srcCompat="@drawable/addtrans2x2"
         android:layout_marginTop="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -91,6 +102,11 @@
             android:text="Departure Date"
             android:onClick="showDatePickerDialog"
             android:layout_weight="1"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/green"
             />
 
         <Button
@@ -99,13 +115,20 @@
             android:layout_height="wrap_content"
             android:text="Departure Time"
             android:onClick="showTimePickerDialog"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/green"/>
 
         <TextView
             android:id="@+id/startDateTripAll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="20"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:text="Departure Date"/>
 
     </LinearLayout>
@@ -143,6 +166,11 @@
             android:text="Arrival Date"
             android:onClick="showDatePickerDialog"
             android:layout_weight="1"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/green"
             />
 
         <Button
@@ -151,13 +179,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="showTimePickerDialog"
-            android:text="Arrival Time" />
+            android:text="Arrival Time"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/green"/>
 
         <TextView
             android:id="@+id/endDateTripAll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:text="Arrival Date"/>
 
     </LinearLayout>
@@ -190,5 +225,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteTrans" />
+
+    </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

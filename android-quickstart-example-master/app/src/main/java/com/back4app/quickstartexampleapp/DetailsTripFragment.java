@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +34,6 @@ public class DetailsTripFragment extends Fragment {
     private TransAdapter mAdapter;
     private List<AccommodationClass> accList = new ArrayList<>();
     private AccAdapter mAdapterAcc;
-    @Nullable
     @Override
 
 
@@ -45,6 +47,9 @@ public class DetailsTripFragment extends Fragment {
         final String tripId = getArguments().getString("tripCurrentId");
         final String tripName = getArguments().getString("tripName");
 
+        Log.i("etalii id",String.valueOf(tripId));
+
+        Log.i("etalii id",String.valueOf(tripName));
 
 
         //list
@@ -57,7 +62,7 @@ public class DetailsTripFragment extends Fragment {
         rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         rv.setAdapter(mAdapter);
 
-        prepareTransData();
+        prepareTransData(String.valueOf(tripId));
 
         mAdapterAcc = new AccAdapter(accList);
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getContext());
@@ -65,7 +70,7 @@ public class DetailsTripFragment extends Fragment {
         rv2.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         rv2.setAdapter(mAdapterAcc);
 
-        prepareAccData();
+        prepareAccData(String.valueOf(tripId));
 
         addAcc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -89,102 +94,137 @@ public class DetailsTripFragment extends Fragment {
         return rootView;
     }
 
-    private void prepareTransData() {
+    private void prepareTransData(String tripId) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Transport");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
+        query.whereEqualTo("objectId", tripId);
 
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> transports, ParseException e) {
 
-                if (e == null) {
 
-                    if (transports.size() > 0) {
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject trip, ParseException e) {
+                if (trip != null) {
 
-                        for (ParseObject trans : transports) {
-                            String name = String.valueOf(trans.get("nameTrans"));
-                            String reservNr = String.valueOf(trans.get("reservationNo"));
-                            String note = String.valueOf(trans.get("noteTrans"));
-                            Number price = trans.getNumber("price");
-                            String depStation = String.valueOf(trans.get("depStation"));
-                            String arrStation = String.valueOf(trans.get("arrStation"));
-                            Date depDate = trans.getDate("departureDate");
-                            Date arrDate =  trans.getDate("arrivalDate");
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Transport");
+                    query.whereEqualTo("TripBy",trip);
 
-                            final java.text.DateFormat dateFormat = java.text.DateFormat.getDateTimeInstance();
-                            String depD = String.valueOf(dateFormat.format(depDate.getTime()));
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> transports, ParseException e) {
 
-                            final java.text.DateFormat dateFormat2 = java.text.DateFormat.getDateTimeInstance();
-                            String arrD = String.valueOf(dateFormat2.format(arrDate.getTime()));
+                            if (e == null) {
 
-                            String priceS = String.valueOf(price);
+                                if (transports.size() > 0) {
 
-                            TransportClass transC = new TransportClass(name, reservNr, depStation, arrStation, note, priceS, depD, arrD);
-                            transList.add(transC);
+                                    for (ParseObject trans : transports) {
+                                        String name = String.valueOf(trans.get("nameTrans"));
+                                        String reservNr = String.valueOf(trans.get("reservationNo"));
+                                        String note = String.valueOf(trans.get("noteTrans"));
+                                        Number price = trans.getNumber("price");
+                                        String depStation = String.valueOf(trans.get("depStation"));
+                                        String arrStation = String.valueOf(trans.get("arrStation"));
+                                        Date depDate = trans.getDate("departureDate");
+                                        Date arrDate =  trans.getDate("arrivalDate");
+
+                                        final java.text.DateFormat dateFormat = java.text.DateFormat.getDateTimeInstance();
+                                        String depD = String.valueOf(dateFormat.format(depDate.getTime()));
+
+                                        final java.text.DateFormat dateFormat2 = java.text.DateFormat.getDateTimeInstance();
+                                        String arrD = String.valueOf(dateFormat2.format(arrDate.getTime()));
+
+                                        String priceS = String.valueOf(price);
+
+                                        TransportClass transC = new TransportClass(name, reservNr, depStation, arrStation, note, priceS, depD, arrD);
+                                        transList.add(transC);
+
+                                    }
+
+                                    mAdapter.notifyDataSetChanged();
+                                }
+
+
+                            } else {
+
+                                e.printStackTrace();
+
+                            }
 
                         }
+                    });
 
-                        mAdapter.notifyDataSetChanged();
-                    }
 
 
                 } else {
 
-                    e.printStackTrace();
-
                 }
-
             }
         });
 
     }
 
-    private void prepareAccData() {
+    private void prepareAccData(String tripId) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Accommodation");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
+        query.whereEqualTo("objectId", tripId);
 
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> accommodtions, ParseException e) {
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject trip, ParseException e) {
+                if (trip != null) {
 
-                if (e == null) {
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Accommodation");
+                    query.whereEqualTo("TripBy",trip);
 
-                    if (accommodtions.size() > 0) {
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> accommodtions, ParseException e) {
 
-                        for (ParseObject acc : accommodtions) {
-                            String name = String.valueOf(acc.get("nameAcc"));
-                            String reservNr = String.valueOf(acc.get("reservationNo"));
-                            String note = String.valueOf(acc.get("noteAcc"));
-                            Number price = acc.getNumber("price");
-                            String address = String.valueOf(acc.get("addressAcc"));
-                            Date checkin = acc.getDate("CheckInDate");
-                            Date checkout =  acc.getDate("CheckOutDate");
+                            if (e == null) {
 
-                            final java.text.DateFormat dateFormat = java.text.DateFormat.getDateTimeInstance();
-                            String checkinDate = String.valueOf(dateFormat.format(checkin.getTime()));
+                                if (accommodtions.size() > 0) {
 
-                            final java.text.DateFormat dateFormat2 = java.text.DateFormat.getDateTimeInstance();
-                            String checkoutDate = String.valueOf(dateFormat2.format(checkout.getTime()));
+                                    for (ParseObject acc : accommodtions) {
+                                        String name = String.valueOf(acc.get("nameAcc"));
+                                        String reservNr = String.valueOf(acc.get("reservationNo"));
+                                        String note = String.valueOf(acc.get("noteAcc"));
+                                        Number price = acc.getNumber("price");
+                                        String address = String.valueOf(acc.get("addressAcc"));
+                                        Date checkin = acc.getDate("CheckInDate");
+                                        Date checkout =  acc.getDate("CheckOutDate");
 
-                            String priceS = String.valueOf(price);
+                                        final java.text.DateFormat dateFormat = java.text.DateFormat.getDateTimeInstance();
+                                        String checkinDate = String.valueOf(dateFormat.format(checkin.getTime()));
 
-                            AccommodationClass accC = new AccommodationClass(name, reservNr, address, note, priceS, checkinDate, checkoutDate);
-                            accList.add(accC);
+                                        final java.text.DateFormat dateFormat2 = java.text.DateFormat.getDateTimeInstance();
+                                        String checkoutDate = String.valueOf(dateFormat2.format(checkout.getTime()));
+
+                                        String priceS = String.valueOf(price);
+
+                                        AccommodationClass accC = new AccommodationClass(name, reservNr, address, note, priceS, checkinDate, checkoutDate);
+                                        accList.add(accC);
+
+                                    }
+
+                                    mAdapterAcc.notifyDataSetChanged();
+                                }
+
+
+                            } else {
+
+                                e.printStackTrace();
+
+                            }
 
                         }
-
-                        mAdapterAcc.notifyDataSetChanged();
-                    }
+                    });
 
 
                 } else {
 
-                    e.printStackTrace();
-
                 }
-
             }
         });
+
+
 
     }
 }

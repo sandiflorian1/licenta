@@ -53,7 +53,6 @@ public class TripsFragment extends Fragment {
 
         rv.setHasFixedSize(true);
 
-       // TripAdapter adapter = new TripAdapter(new String[]{"test one", "test two", "test three", "test four", "test five" , "test six" , "test seven"});
         mAdapter = new TripAdapter(tripList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(mLayoutManager);
@@ -114,10 +113,8 @@ public class TripsFragment extends Fragment {
     private void prepareTripData() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
-        ParseQuery<ParseObject> innerQuery  = ParseQuery.getQuery("User");
-        innerQuery.whereEqualTo("nameuser", ParseUser.getCurrentUser().getUsername());
-        query.whereDoesNotMatchQuery("User", innerQuery);
-        Log.i("Info", String.valueOf(ParseUser.getCurrentUser().getObjectId()));
+        query.whereEqualTo("createdBy", ParseUser.getCurrentUser());
+
         query.addDescendingOrder("createdAt");
 
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -168,9 +165,11 @@ public class TripsFragment extends Fragment {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Trip");
         //query.whereEqualTo("nameuser", ParseUser.getCurrentUser().getUsername());
+        query.whereEqualTo("createdBy", ParseUser.getCurrentUser());
         Log.i("Info", String.valueOf(ParseUser.getCurrentUser().getObjectId()));
+
         if(x == -1){
-            query.whereLessThanOrEqualTo("endDate",Calendar.getInstance().getTime());
+            query.whereLessThan("endDate",Calendar.getInstance().getTime());
         }else if (x == 0){
             query.whereLessThanOrEqualTo("startDate",Calendar.getInstance().getTime());
             query.whereGreaterThanOrEqualTo("endDate",Calendar.getInstance().getTime());

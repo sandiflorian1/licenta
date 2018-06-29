@@ -40,12 +40,18 @@ public class CurrentTrip extends AppCompatActivity {
     private void setupViewPagerX(ViewPager viewPager, String tripId){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         DetailsTripFragment detailsFrag = new DetailsTripFragment();
+        ItieraryTripFragment itinerariFrag = new ItieraryTripFragment();
+
         Bundle bundle = new Bundle();
         bundle.putString("tripCurrentId", tripId);
         bundle.putString("tripName", tripName);
+
         detailsFrag.setArguments(bundle);
+        itinerariFrag.setArguments(bundle);
+
         adapter.addFragment(detailsFrag,"Details");
-        adapter.addFragment(new ItieraryTripFragment(), "Itinerary");
+        adapter.addFragment(itinerariFrag, "Itinerary");
+
         viewPager.setAdapter(adapter);
     }
 

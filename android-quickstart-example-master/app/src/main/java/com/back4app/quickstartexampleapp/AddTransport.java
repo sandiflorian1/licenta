@@ -22,6 +22,8 @@ import com.parse.SaveCallback;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.app.PendingIntent.getActivity;
+
 public class AddTransport extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     public Date checkinDate = new Date();
@@ -59,10 +61,10 @@ public class AddTransport extends AppCompatActivity implements DatePickerDialog.
             public void done(ParseException e) {
                 if( e == null){
                     Log.i("create", "creare trip cu succes");
-//                    Intent intent = new Intent(getApplicationContext(),CurrentTrip.class);
-//                    startActivity(intent);
-//                    intent.putExtra("tripName", tripName);
-//                    intent.putExtra("tripId", tripId);
+                    Intent intent = new Intent(getApplicationContext(),CurrentTrip.class);
+                    intent.putExtra("tripName", tripName);
+                    intent.putExtra("tripId", tripId);
+                    startActivity(intent);
                 }else{
                     Log.i("create", "creare trip cu eroare");
                     Log.i("create", String.valueOf(e));
